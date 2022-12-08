@@ -76,7 +76,6 @@ class HomePage extends StatelessWidget {
           child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [
-              Image.asset("assets/images/vieux.jpg"),
               const Text("Bienvenue",
                 style: TextStyle(
                   fontSize: 24,
