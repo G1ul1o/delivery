@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:titre/local_notification.dart';
 
 void main() {
   runApp(const MyApp());
@@ -65,8 +66,17 @@ class NotePage extends StatefulWidget{
 
 class _NoteState extends State<NotePage> {
   DateTime _dateTime = DateTime(2022);
+
   final fieldText1 = TextEditingController();
-  final fieldText2 = TextEditingController();
+
+  late final LocalNotificationService service;
+  @override
+  void initState()
+  {
+    service = LocalNotificationService();
+    service.intialize();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,16 +113,19 @@ class _NoteState extends State<NotePage> {
                     )),
               ),
 
-              SizedBox(height: 40),
+              SizedBox(height: 10),
 
               Container(
-                margin: const EdgeInsets.all(10.0),
-                padding: const EdgeInsets.all(5.0),
+
+                margin: const EdgeInsets.all(1.0),
+                padding: const EdgeInsets.all(1.0),
+
                 decoration: BoxDecoration(border: Border.all(
                     width : 3,
                     color: Colors.black
                 )),
               child: Text(
+                textAlign:  TextAlign.center,
                 '${_dateTime.day}-${_dateTime.month}-${_dateTime.year}',
                 style: const TextStyle(fontSize: 40),
                 ),
@@ -144,12 +157,17 @@ class _NoteState extends State<NotePage> {
                 borderRadius: BorderRadius.circular(20),
                 child: Text('Valider', style: TextStyle(fontSize: 20)),
                 
-                onPressed: () {
+                onPressed: () async {
+                  await service.showNotification(
+                      id: 0,
+                      title: 'Notification',
+                      body: 'Evénement enregistré');
                   fieldText1.clear();
-                  final day = _dateTime.day;
-                  final month = _dateTime.month;
-                  final year = _dateTime.year;
-                  _dateTime = DateTime(2022);
+                  await service.showNotification(
+                      id: 0,
+                      title: 'Notification',
+                      body: 'Evénement enregistré');
+                  fieldText1.clear();
                   Navigator.push(
                       context, //info de la page actuelle utile pour la redirection
                       PageRouteBuilder(
