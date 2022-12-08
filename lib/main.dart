@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:titre/local_notification.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,14 +57,28 @@ class MyElevatedButton extends StatelessWidget {
   }
 }
 
+class NotePage extends StatefulWidget{
+
+  const NotePage({Key? key}) : super(key: key);
+
+  @override
+  State<NotePage> createState() => _NoteState();
+}
+
+class _NoteState extends State<NotePage>
+{
+final fieldText1 = TextEditingController();
+final fieldText2 = TextEditingController();
 
 
-class NotePage extends StatelessWidget {
-  final fieldText1 = TextEditingController();
-  final fieldText2 = TextEditingController();
-
-  NotePage({Key? key}) : super(key: key);
-
+late final LocalNotificationService service;
+  @override
+  void initState()
+  {
+    service = LocalNotificationService();
+    service.intialize();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,11 +132,13 @@ class NotePage extends StatelessWidget {
               MyElevatedButton(
                 borderRadius: BorderRadius.circular(20),
                 child: Text('Valider', style: TextStyle(fontSize: 20)),
-                onPressed: () {
+                onPressed: () async{
+                  await service.showNotification(
+                      id: 0,
+                      title: 'Notification',
+                      body: 'Evénement enregistré');
                   fieldText1.clear();
                   fieldText2.clear();
-
-
                   //Navigator.push();
                 },
               )
@@ -133,9 +150,7 @@ class NotePage extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({
-    Key? key,
-  }) : super(key: key);
+  const HomePage({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +164,6 @@ class HomePage extends StatelessWidget {
           child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [
-              Image.asset("assets/images/vieux.jpg"),
               const Text("Bienvenue",
                 style: TextStyle(
                   fontSize: 24,
@@ -185,8 +199,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
