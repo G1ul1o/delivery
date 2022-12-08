@@ -55,15 +55,18 @@ class MyElevatedButton extends StatelessWidget {
     );
   }
 }
+class NotePage extends StatefulWidget{
 
+  const NotePage({Key? key}) : super(key: key);
 
+  @override
+  State<NotePage> createState() => _NoteState();
+}
 
-class NotePage extends StatelessWidget {
+class _NoteState extends State<NotePage> {
+  DateTime _dateTime = DateTime(2022);
   final fieldText1 = TextEditingController();
   final fieldText2 = TextEditingController();
-
-  NotePage({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,13 +105,36 @@ class NotePage extends StatelessWidget {
 
               SizedBox(height: 40),
 
-              TextFormField(
-                controller: fieldText2,
-                decoration: InputDecoration(
-                    hintText: "Date de l'evenement",
-                    border: OutlineInputBorder(
-                      borderRadius : BorderRadius.circular(30),
-                    )),
+              Container(
+                margin: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(5.0),
+                decoration: BoxDecoration(border: Border.all(
+                    width : 3,
+                    color: Colors.black
+                )),
+              child: Text(
+                '${_dateTime.day}-${_dateTime.month}-${_dateTime.year}',
+                style: const TextStyle(fontSize: 40),
+                ),
+              ),
+              SizedBox(height: 10),
+
+
+              MyElevatedButton(
+
+                borderRadius: BorderRadius.circular(20),
+                child: Text('Entrer une date', style: TextStyle(fontSize: 20)),
+                onPressed: ()async {
+                  DateTime? _newDate = await showDatePicker(
+                    context: context,
+                    initialDate: _dateTime,
+                    firstDate: DateTime(1800),
+                    lastDate: DateTime(3000),
+                  );
+                  if(_newDate != null){
+                    setState(() { _dateTime = _newDate; });
+                  }
+                },
               ),
 
               SizedBox(height: 40),
@@ -117,11 +143,18 @@ class NotePage extends StatelessWidget {
               MyElevatedButton(
                 borderRadius: BorderRadius.circular(20),
                 child: Text('Valider', style: TextStyle(fontSize: 20)),
+                
                 onPressed: () {
                   fieldText1.clear();
-                  fieldText2.clear();
-
-
+                  final day = _dateTime.day;
+                  final month = _dateTime.month;
+                  final year = _dateTime.year;
+                  _dateTime = DateTime(2022);
+                  Navigator.push(
+                      context, //info de la page actuelle utile pour la redirection
+                      PageRouteBuilder(
+                      pageBuilder: (_, __, ___,) => NotePage()
+                  ));
                   //Navigator.push();
                 },
               )
