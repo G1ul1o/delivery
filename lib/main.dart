@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:titre/local_notification.dart';
 
+
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -191,8 +194,6 @@ class HomePage extends StatelessWidget {
                   );
                 },
               )
-
-
             ],
           ),
         )
