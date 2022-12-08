@@ -58,6 +58,61 @@ class MyElevatedButton extends StatelessWidget {
 
 
 
+
+class HomePage extends StatelessWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+        appBar: AppBar(
+          title: const Text("Application de rappels"),
+        ),
+        body: Center(
+          child : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:  [
+              Image.asset("assets/images/vieux.jpg"),
+              const Text("Bienvenue",
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
+              SizedBox(height: 10),
+              const Text("Pour créer un évènement, toucher ci-dessous",
+                style : TextStyle(
+                    fontSize: 15
+                ),
+                textAlign:  TextAlign.center,
+              ),
+              Padding(padding: EdgeInsets.zero),
+              SizedBox(height: 40),
+
+              MyElevatedButton(
+                borderRadius: BorderRadius.circular(20),
+                child: Text('Créer un evenement', style: TextStyle(fontSize: 20)),
+                onPressed: () {
+                  Navigator.push(
+                      context, //info de la page actuelle utile pour la redirection
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___,) => NotePage()
+                      )
+                  );
+                },
+              )
+
+
+            ],
+          ),
+        )
+    );
+  }
+}
+
 class NotePage extends StatelessWidget {
   final fieldText1 = TextEditingController();
   final fieldText2 = TextEditingController();
@@ -125,60 +180,6 @@ class NotePage extends StatelessWidget {
                   //Navigator.push();
                 },
               )
-            ],
-          ),
-        )
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-
-        appBar: AppBar(
-          title: const Text("Application de rappels"),
-        ),
-        body: Center(
-          child : Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:  [
-              Image.asset("assets/images/vieux.jpg"),
-              const Text("Bienvenue",
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-              ),
-              SizedBox(height: 10),
-              const Text("Pour créer un évènement, toucher ci-dessous",
-                style : TextStyle(
-                    fontSize: 15
-                ),
-                textAlign:  TextAlign.center,
-              ),
-              Padding(padding: EdgeInsets.zero),
-              SizedBox(height: 40),
-
-              MyElevatedButton(
-                borderRadius: BorderRadius.circular(20),
-                child: Text('Créer un evenement', style: TextStyle(fontSize: 20)),
-                onPressed: () {
-                  Navigator.push(
-                      context, //info de la page actuelle utile pour la redirection
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___,) => NotePage()
-                      )
-                  );
-                },
-              )
-
-
             ],
           ),
         )
