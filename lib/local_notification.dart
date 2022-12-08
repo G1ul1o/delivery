@@ -15,24 +15,24 @@ class LocalNotificationService{
     final InitializationSettings settings = InitializationSettings(android: androidInitializationSettings);
 
     await _localNotificationsService.initialize(settings,
-        onSelectNotification: onSelectNotification,);
+      onSelectNotification: onSelectNotification,);
 
   }
 
   Future<NotificationDetails> _notificationDetails() async{
     const AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
-      'channel_id',
-      'channel_name',
-      channelDescription: 'description',
-      importance: Importance.max,
-      priority: Priority.max,
-      playSound: true);
+        'channel_id',
+        'channel_name',
+        channelDescription: 'description',
+        importance: Importance.max,
+        priority: Priority.max,
+        playSound: true);
 
     return const NotificationDetails(android: androidNotificationDetails);
   }
 
   Future<void> showNotification({
-  required int id,
+    required int id,
     required String title,
     required String body,
   }) async {
