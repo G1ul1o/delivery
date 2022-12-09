@@ -152,7 +152,6 @@ class _NoteState extends State<NotePage> {
 
               SizedBox(height: 40),
 
-
               MyElevatedButton(
                 borderRadius: BorderRadius.circular(20),
                 child: Text('Valider', style: TextStyle(fontSize: 20)),
@@ -175,10 +174,10 @@ class _NoteState extends State<NotePage> {
                   ));
                   //Navigator.push();
                 },
-              )
+              ),
             ],
           ),
-        )
+        ),
     );
   }
 }
@@ -192,7 +191,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
         appBar: AppBar(
           title: const Text("Application de rappels"),
         ),
@@ -200,13 +198,22 @@ class HomePage extends StatelessWidget {
           child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [
-              Image.asset("assets/images/vieux.jpg"),
-              const Text("Bienvenue",
-                style: TextStyle(
-                  fontSize: 24,
+              Text(
+                "Liste des évenements :",
+                style: TextStyle(fontSize: 24,
                 ),
               ),
-              SizedBox(height: 10),
+              Flexible(
+                child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 20,
+
+                itemBuilder: (context, index) => ListTile(
+                title: Text('Evemenent ${index+1}'),
+              ),
+              ),
+              ),
+
               const Text("Pour créer un évènement, toucher ci-dessous",
                 style : TextStyle(
                     fontSize: 15
@@ -214,7 +221,7 @@ class HomePage extends StatelessWidget {
                 textAlign:  TextAlign.center,
               ),
               Padding(padding: EdgeInsets.zero),
-              SizedBox(height: 40),
+              SizedBox(height: 10),
 
               MyElevatedButton(
                 borderRadius: BorderRadius.circular(20),
@@ -228,8 +235,6 @@ class HomePage extends StatelessWidget {
                   );
                 },
               )
-
-
             ],
           ),
         )
