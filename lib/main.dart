@@ -140,7 +140,7 @@ class _NoteState extends State<NotePage> {
                   DateTime? _newDate = await showDatePicker(
                     context: context,
                     initialDate: _dateTime,
-                    firstDate: DateTime(1800),
+                    firstDate: DateTime(2022),
                     lastDate: DateTime(3000),
                   );
                   if(_newDate != null){
