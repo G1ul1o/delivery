@@ -183,9 +183,24 @@ class _NoteState extends State<NotePage> {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({
+  HomePage({
     Key? key,
   }) : super(key: key);
+
+  final List event = [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "UWU",
+    "Juin",
+    "Juillet",
+    "Aout",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -206,11 +221,16 @@ class HomePage extends StatelessWidget {
               Flexible(
                 child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 20,
+                itemCount: event.length,
 
-                itemBuilder: (context, index) => ListTile(
-                title: Text('Evemenent ${index+1}'),
-              ),
+                itemBuilder: (context, index){
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(event[index], style: TextStyle(fontSize: 30)),
+                    ),
+                  );
+                },
               ),
               ),
 
