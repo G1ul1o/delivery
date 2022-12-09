@@ -116,7 +116,6 @@ class _NoteState extends State<NotePage> {
               SizedBox(height: 10),
 
               Container(
-
                 margin: const EdgeInsets.all(1.0),
                 padding: const EdgeInsets.all(1.0),
 
@@ -168,11 +167,7 @@ class _NoteState extends State<NotePage> {
                       title: 'Notification',
                       body: 'Evénement enregistré');
                   fieldText1.clear();
-                  Navigator.push(
-                      context, //info de la page actuelle utile pour la redirection
-                      PageRouteBuilder(
-                      pageBuilder: (_, __, ___,) => NotePage()
-                  ));
+                  Navigator.pop(context);
                   //Navigator.push();
                 },
               )
